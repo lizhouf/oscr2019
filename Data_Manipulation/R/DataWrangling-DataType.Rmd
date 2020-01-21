@@ -1,0 +1,77 @@
+---
+title: "Converting data type with R"
+subtitle: "How to Check & Convert Data Types using R"
+# author: "Kaixin Wang"
+# date: "OSCR - Summer Session C 2019"
+# output: rmarkdown::github_document
+## output: html_document
+# output:
+#   beamer_presentation:
+#     slide_level: 2
+output: bookdown::render_book()
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = "")
+```
+
+# Import data
+
+```{r, message = F, include=T}
+library(readr)
+input = read_csv("person_info.csv")
+input
+```
+
+# Check the data type
+
+In this section, we introduce `str`, `summary`, `class`, and `typeof` functions.
+
+## `str`() function
+
+```{r}
+str(input)  # data structure of the object
+```
+
+## `summary`() function:
+
+```{r}
+summary(input)  # summary statistics of the object
+```
+
+## `class`() and `typeof`() functions
+
+```{r}
+class(input$first_name)  # class of the object
+typeof(input$first_name)  # type of the object
+```
+
+```{r}
+class(input$age)  # class of the object
+typeof(input$age)  # type of the object
+```
+
+# Data type coercion
+
+In this section, we introduce `as.numeric`, `as.logical`, `as.integer`, `as.double`, `as.factor`, and `as.character` functions.
+ 
+## examples:
+ 
+```{r}
+age <- input$age 
+summary(age)
+as.double(age)
+as.logical(age)   # to a logical vector
+as.character(age) # to a character vector
+as.factor(age)    # to a factor
+```
+ 
+## `as.logical()` function:
+
+    - if the input is numeric: 0 is converted to FALSE, else converted to TRUE
+    - if the input is character: NA produced
+
+## `as.factor()` function:
+
+    - the order of the levels is in alpha-numeric order
+
